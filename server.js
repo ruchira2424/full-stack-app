@@ -5,23 +5,24 @@ const path = require('path');
 const PORT = process.env.PORT || 8080;
 
 const server = http.createServer((req, res) => {
+  if (req.url === '/') {
+    const filePath = path.join(__dirname, 'index.html');
 
-  if (req.url === "/api/message") {
-    res.setHeader('Content-Type', 'application/json');
-    res.end(JSON.stringify({ message: "Hello from Backend 🚀" }));
-  } 
-  
-  else if (req.url === "/") {
-    const filePath = path.join(__dirname, '../frontend/index.html');
-    fs.readFile(filePath, (err, data) => {
-      res.setHeader('Content-Type', 'text/html');
-      res.end(data);
+    fs.readFile(filePath, (err, content) => {
+      if (err) {
+        res.writeHead(500);
+        res.end('Error loading page');
+      } else {
+        res.writeHead(200, { 'Content-Type': 'text/html' });
+        res.end(content);
+      }
     });
-  } 
-  
-  else {
-    res.statusCode = 404;
-    res.end("Not Found");
+  } else if (req.url === '/api') {
+    res.writeHead(200, { 'Content-Type': 'application/json' });
+    res.end(JSON.stringify({ message: "Hello from backend 🚀" }));
+  } else {
+    res.writeHead(404);
+    res.end('Not Found');
   }
 });
 
