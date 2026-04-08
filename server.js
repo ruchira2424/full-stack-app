@@ -19,7 +19,7 @@ const server = http.createServer((req, res) => {
     });
   } else if (req.url === '/api') {
     res.writeHead(200, { 'Content-Type': 'application/json' });
-    res.end(JSON.stringify({ message: "Hello from backend 🚀" }));
+    res.end(JSON.stringify({ message: "Hello from backend ,ruchira" }));
   } else {
     res.writeHead(404);
     res.end('Not Found');
