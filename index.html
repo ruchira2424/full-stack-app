@@ -4,15 +4,17 @@
   <title>Full Stack App</title>
 </head>
 <body>
-  <h1>Frontend 🚀</h1>
-  <button onclick="getMessage()">Get Message</button>
+  <h1>🚀 Full Stack App Working!</h1>
+  <button onclick="loadData()">Call API</button>
   <p id="output"></p>
 
   <script>
-    async function getMessage() {
-      const res = await fetch('/api/message');
-      const data = await res.json();
-      document.getElementById('output').innerText = data.message;
+    function loadData() {
+      fetch('/api')
+        .then(res => res.json())
+        .then(data => {
+          document.getElementById('output').innerText = data.message;
+        });
     }
   </script>
 </body>
