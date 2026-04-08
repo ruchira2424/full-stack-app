@@ -6,7 +6,7 @@ pipeline {
         REGION = 'us-central1'
         REPO = 'my-repo'
         IMAGE = 'full-stack-app'
-        SERVICE_NAME = 'fullstack-service'
+        SERVICE_NAME = 'full-stack-service'
     }
 
     stages {
@@ -26,7 +26,7 @@ pipeline {
         stage('Push Image') {
             steps {
                 sh '''
-                docker tag fullstack-app:latest us-central1-docker.pkg.dev/ruchira-490405/my-repo/full-stack-app:latest
+                docker tag full-stack-app:latest us-central1-docker.pkg.dev/ruchira-490405/my-repo/full-stack-app:latest
                 docker push us-central1-docker.pkg.dev/ruchira-490405/my-repo/full-stack-app:latest
                 '''
             }
