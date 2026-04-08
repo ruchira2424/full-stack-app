@@ -34,14 +34,15 @@ pipeline {
 
         stage('Deploy') {
             steps {
-                sh '''
-                gcloud run deploy full-stack-service \
-                --image us-central1-docker.pkg.dev/ruchira-490405/my-repo/full-stack-app:latest \
-                --platform managed \
-                --region us-central1 \
-                --allow-unauthenticated \
-                --quiet
-                '''
+                sh """
+                    gcloud run deploy full-stack-service \
+                    --image us-central1-docker.pkg.dev/ruchira-490405/my-repo/full-stack-app:latest \
+                    --platform managed \
+                    --region us-central1 \
+                    --allow-unauthenticated \
+                    --service-account=ruchira-490405@appspot.gserviceaccount.com \
+                    --quiet
+                """
             }
         }
     }
